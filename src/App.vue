@@ -14,6 +14,7 @@
         <button class="btn btn-primary" @click="submit">Submit</button>
         <hr />
         <button class="btn btn-primary" @click="fetchData">Get Data</button>
+        <hr />
         <ul class="list-grou">
           <li class="list-group-item" v-for="u in users">
             {{ u.username }} - {{ u.mail }}
@@ -37,24 +38,23 @@ export default {
   },
   methods: {
     submit() {
-      this.$http
-        .post("https://vuehttp-cc0f9.firebaseio.com/data.json", this.user)
-        .then(
-          res => {
-            console.log(res);
-          },
-          err => {
-            console.log(err);
-          }
-        );
+      this.$http.post("", this.user).then(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log(err);
+        }
+      );
     },
     fetchData() {
       this.$http
-        .get("https://vuehttp-cc0f9.firebaseio.com/data.json")
+        .get("")
         .then(res => res.json())
         .then(data => {
           const resultArray = [];
           for (let key in data) {
+            console.log(key, data);
             resultArray.push(data[key]);
           }
           this.users = resultArray;
